@@ -264,7 +264,7 @@ namespace Xwt.GtkBackend
 
 		void IWindowFrameBackend.SetTransientFor (IWindowFrameBackend window)
 		{
-			Window.TransientFor = ApplicationContext.Toolkit.GetNativeWindow (window) as Gtk.Window;
+			Window.TransientFor = window == null ? null : ApplicationContext.Toolkit.GetNativeWindow (window) as Gtk.Window;
 		}
 
 		public bool Resizable {
