@@ -167,7 +167,8 @@ namespace Xwt.WPFBackend
 			var m = resizable && window.WindowStyle != WindowStyle.None ? ResizeMode.CanResize : ResizeMode.NoResize;
 			if (m != window.ResizeMode) {
 				window.ResizeMode = m;
-				OnResizeModeChanged ();
+                resizable = window.ResizeMode == ResizeMode.CanResize;
+                OnResizeModeChanged ();
 			}
 		}
 
