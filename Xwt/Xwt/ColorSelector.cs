@@ -400,7 +400,7 @@ namespace Xwt
 						}
 					}
 
-					if (ParentWindow != null)
+					if (ParentWindow != null && ParentWindow.Visible)
 						colorBox = ib.ToBitmap (this); // take screen scale factor into account
 					else
 						colorBox = ib.ToBitmap ();
