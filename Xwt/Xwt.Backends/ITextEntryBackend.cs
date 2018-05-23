@@ -31,7 +31,8 @@ namespace Xwt.Backends
 	{
 		string Text { get; set; }
 		Alignment TextAlignment { get; set; }
-		string PlaceholderText { get; set; }
+        Xwt.Drawing.Color TextColor { get; set; }
+        string PlaceholderText { get; set; }
 		bool ReadOnly { get; set; }
 		bool ShowFrame { get; set; }
 		bool MultiLine { get; set; }
@@ -39,8 +40,8 @@ namespace Xwt.Backends
 		int SelectionStart { get; set; }
 		int SelectionLength { get; set; }
 		string SelectedText { get; set; }
-		bool HasCompletions { get; }
-		void SetCompletions (string[] completions);
+		bool HasCompletions { get; }        
+        void SetCompletions (string[] completions);
 		void SetCompletionMatchFunc (Func<string, string, bool> matchFunc);
 	}
 	

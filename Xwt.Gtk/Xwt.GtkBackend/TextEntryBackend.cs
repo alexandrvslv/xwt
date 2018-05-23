@@ -74,7 +74,12 @@ namespace Xwt.GtkBackend
 			}
 		}
 
-		public override Color BackgroundColor {
+        public Color TextColor {
+            get { return Widget.GetForegroundColor(); }
+            set { Widget.SetForegroundColor(value); }
+        }
+
+        public override Color BackgroundColor {
 			get {
 				return base.BackgroundColor;
 			}

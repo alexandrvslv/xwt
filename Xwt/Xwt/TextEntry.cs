@@ -88,7 +88,12 @@ namespace Xwt
 			set { Backend.TextAlignment = value; }
 		}
 
-		[DefaultValue ("")]
+        public Xwt.Drawing.Color TextColor { 
+            get { return Backend.TextColor; }
+            set { Backend.TextColor = value;  }
+        }
+
+        [DefaultValue ("")]
 		public string PlaceholderText {
 			get { return Backend.PlaceholderText; }
 			set { Backend.PlaceholderText = value; }
@@ -140,8 +145,8 @@ namespace Xwt
 		public bool HasCompletions {
 			get { return Backend.HasCompletions; }
 		}
-
-		public void SetCompletions (string[] completions)
+        
+        public void SetCompletions (string[] completions)
 		{
 			Backend.SetCompletions (completions);
 		}

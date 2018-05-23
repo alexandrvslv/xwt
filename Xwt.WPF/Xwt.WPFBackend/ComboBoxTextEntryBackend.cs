@@ -74,7 +74,13 @@ namespace Xwt.WPFBackend
 			set { this.combobox.HorizontalContentAlignment = DataConverter.ToWpfAlignment (value); }
 		}
 
-		public string PlaceholderText
+        public virtual Xwt.Drawing.Color TextColor
+        {
+            get { return combobox.Foreground.ToXwtColor(); }
+            set { combobox.Foreground = ResPool.GetSolidBrush(value); }
+        }
+
+        public string PlaceholderText
 		{
 			get { return this.placeholderText; }
 			set

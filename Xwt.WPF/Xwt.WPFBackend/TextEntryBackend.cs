@@ -76,7 +76,13 @@ namespace Xwt.WPFBackend
 			set { TextBox.TextAlignment = DataConverter.ToTextAlignment (value); }
 		}
 
-		public string PlaceholderText {
+        public virtual Xwt.Drawing.Color TextColor
+        {
+            get { return TextBox.Foreground.ToXwtColor(); }
+            set { TextBox.Foreground = ResPool.GetSolidBrush(value); }
+        }
+
+        public string PlaceholderText {
 			get {
 				return placeholderText;
 			}
