@@ -75,8 +75,8 @@ namespace Xwt.GtkBackend
 		}
 
         public Color TextColor {
-            get { return Widget.GetForegroundColor(); }
-            set { Widget.SetForegroundColor(value); }
+            get { return Widget.GetTextColor(); }
+            set { Widget.SetTextColor(value); }
         }
 
         public override Color BackgroundColor {
