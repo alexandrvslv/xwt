@@ -229,10 +229,17 @@ namespace Xwt.WPFBackend
 		public override object RenderWidget (Widget widget)
 		{
 			try {
-				var w = ((WidgetBackend)widget.GetBackend ()).Widget;
-				RenderTargetBitmap rtb = new RenderTargetBitmap ((int)w.ActualWidth, (int)w.ActualHeight, 96, 96, PixelFormats.Pbgra32);
-				rtb.Render(w);
-				return new WpfImage(rtb);
+				var wpfWidget = ((WidgetBackend)widget.GetBackend ()).Widget;
+				var renderer = new RenderTargetBitmap ((int)wpfWidget.ActualWidth, (int)wpfWidget.ActualHeight, 96, 96, PixelFormats.Pbgra32);
+                var bounds = VisualTreeHelper.GetDescendantBounds(wpfWidget);
+                var drawing = new DrawingVisual();
+                using (var ctx = drawing.RenderOpen())
+                {
+                    VisualBrush vb = new VisualBrush(wpfWidget);
+                    ctx.DrawRectangle(vb, null, new Rect(0, 0, bounds.Width, bounds.Height));
+                }
+                renderer.Render(drawing);
+                return new WpfImage(renderer);
 			} catch (Exception ex) {
 				throw new InvalidOperationException ("Rendering element not supported", ex);
 			}
