@@ -46,7 +46,9 @@ namespace Xwt.Mac
 		static readonly IntPtr cls_NSImage = new Class (typeof (NSImage)).Handle;
 
 		static Dictionary<string, NSImage> stockIcons = new Dictionary<string, NSImage> ();
-		
+
+		public override bool DisposeHandleOnUiThread => true;
+
 		public override object LoadFromStream (Stream stream)
 		{
 			using (NSData data = NSData.FromStream (stream)) {
@@ -303,6 +305,17 @@ namespace Xwt.Mac
 			this.drawCallback = drawCallback;
 			imgRep = new NSCustomImageRep (new Selector ("drawIt:"), this);
 			AddRepresentation (imgRep);
+		}
+
+		public override CGSize Size
+		{
+			get {
+				return base.Size;
+			}
+			set {
+				base.Size = value;
+				imgRep.Size = value;
+			}
 		}
 
 		[Export ("drawIt:")]

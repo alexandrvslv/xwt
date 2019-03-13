@@ -1,4 +1,4 @@
-﻿// 
+// 
 // BoxBackend.cs
 //  
 // Author:
@@ -130,17 +130,22 @@ namespace Xwt.WPFBackend
 					if (force) {
 						// Don't recalculate the size unless a relayout is being forced
 						element.InvalidateMeasure ();
-                        element.Measure(new SW.Size(r.Width, r.Height));
-                    }
+						element.Measure (new SW.Size (r.Width, r.Height));
+					}
+					
 					element.Arrange (r.ToWpfRect ());
 				//	element.UpdateLayout ();
 				}
 			}
 		}
 
+		public AutomationPeer AutomationPeerOverride { get; set; }
+
 		protected override AutomationPeer OnCreateAutomationPeer ()
 		{
-			return new CustomPanelAutomationPeer (this);
+			if (AutomationPeerOverride != null)
+				return AutomationPeerOverride;
+			else return new CustomPanelAutomationPeer (this);
 		}
 
 		class CustomPanelAutomationPeer : FrameworkElementAutomationPeer

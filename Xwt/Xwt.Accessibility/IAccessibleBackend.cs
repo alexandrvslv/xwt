@@ -1,4 +1,4 @@
-﻿//
+//
 // AccessibleBackendHandler.cs
 //
 // Author:
@@ -24,6 +24,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
+using System.Collections.Generic;
 using Xwt.Accessibility;
 
 namespace Xwt.Backends
@@ -31,6 +32,11 @@ namespace Xwt.Backends
 	public interface IAccessibleBackend : IBackend
 	{
 		void Initialize (IWidgetBackend parentWidget, IAccessibleEventSink eventSink);
+
+		void Initialize (IPopoverBackend parentPopover, IAccessibleEventSink eventSink);
+
+		void Initialize (IMenuBackend parentMenu, IAccessibleEventSink eventSink);
+		void Initialize (IMenuItemBackend parentMenuItem, IAccessibleEventSink eventSink);
 
 		void Initialize (object parentWidget, IAccessibleEventSink eventSink);
 
@@ -59,6 +65,7 @@ namespace Xwt.Backends
 		void AddChild (object nativeChild);
 		void RemoveChild (object nativeChild);
 		void RemoveAllChildren ();
+		IEnumerable<object> GetChildren ();
 	}
 
 	public interface IAccessibleEventSink
